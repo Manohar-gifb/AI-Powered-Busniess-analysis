@@ -1,0 +1,244 @@
+================================================================
+  AI-Powered Business Intelligence Dashboard
+  HOW TO USE GUIDE
+================================================================
+
+CONTENTS
+--------
+1. Quick Start (Windows)
+2. Manual Setup (All Platforms)
+3. Default Login Credentials
+4. Feature Guide
+5. Supported File Formats
+6. Troubleshooting
+7. Project Modules Explained
+
+
+================================================================
+1. QUICK START (WINDOWS)
+================================================================
+
+REQUIREMENTS:
+  - Python 3.8 or higher installed on your computer
+  - Download from: https://www.python.org/downloads/
+  - IMPORTANT: Check [x] "Add Python to PATH" during installation
+
+STEPS:
+  1. Extract the project ZIP to any folder on your computer.
+  2. Open the extracted folder.
+  3. Double-click the "run.bat" file.
+  4. Wait for the server to start (first time may take 1-2 minutes).
+  5. A browser window will open automatically to:
+     http://127.0.0.1:5000
+  6. You're ready to go!
+
+  Note: The first time you run the application, it will:
+    - Create a virtual environment
+    - Install all required packages
+    - Create the SQLite database
+    - Generate 1,500 sample sales records
+
+
+================================================================
+2. MANUAL SETUP (ALL PLATFORMS)
+================================================================
+
+Open a terminal/command prompt in the project folder and run:
+
+  # Step 1: Create virtual environment
+  python -m venv venv
+
+  # Step 2: Activate the virtual environment
+  # On Windows:
+  venv\Scripts\activate
+  # On Mac/Linux:
+  source venv/bin/activate
+
+  # Step 3: Install dependencies
+  pip install -r requirements.txt
+
+  # Step 4: Start the application
+  python app.py
+
+  # Step 5: Open browser to
+  http://127.0.0.1:5000
+
+
+================================================================
+3. DEFAULT LOGIN CREDENTIALS
+================================================================
+
+  Username:  admin
+  Password:  admin123
+  Email:     admin@bidashboard.com
+  Role:      administrator
+
+  You can also register a new account by clicking "Register"
+  on the login page.
+
+
+================================================================
+4. FEATURE GUIDE
+================================================================
+
+A) DASHBOARD
+   - View key performance indicators (KPIs) at a glance
+   - See total revenue, profit, orders, customers
+   - Interactive charts showing monthly trends
+   - Filter data by date range, region, and category
+   - All values calculated from the database in real-time
+
+B) DATA IMPORT
+   - Click "Data Import" in the navigation bar
+   - Upload CSV or Excel files
+   - The system will:
+     * Validate your file
+     * Detect column types
+     * Handle missing values
+     * Remove duplicates
+     * Convert dates and numbers
+   - Preview your data before confirming the import
+   - Your imported data is stored in the database
+
+C) ANALYTICS
+   - Detailed analysis of business performance
+   - Sales growth trends over time
+   - Profit margin analysis by region and category
+   - Top and bottom performing products
+   - Revenue contribution analysis
+   - AI-powered business insights and patterns
+
+D) PREDICTION (Machine Learning)
+   - Click "Prediction" then "Train Models"
+   - System trains Linear Regression and Random Forest models
+   - View model performance metrics (R², MAE, RMSE)
+   - See actual vs predicted charts
+   - Use the prediction form to estimate revenue
+   - Enter: quantity, price, month, region, category
+
+E) ANOMALY DETECTION
+   - Click "Anomalies" then "Detect Anomalies"
+   - Uses Isolation Forest algorithm
+   - Identifies unusual transactions automatically
+   - Shows severity levels (High, Medium, Low)
+   - Each anomaly includes a description
+   - Filter anomalies by date, region, or category
+
+F) FORECASTING
+   - Click "Forecast" to predict future business metrics
+   - Choose metric: Revenue, Units Sold, or Profit
+   - Choose period: 3, 6, or 12 months ahead
+   - Choose model: Auto, ARIMA, or Holt-Winters
+   - View chart with historical data + forecast
+   - Confidence intervals shown on the chart
+
+G) RECOMMENDATIONS (AI Insights)
+   - Click "Insights" to see business recommendations
+   - Recommendations are generated from:
+     * KPI analysis
+     * Sales and profit trends
+     * Anomaly detection results
+     * Business rules engine
+   - Each recommendation has:
+     * Priority (High, Medium, Low, Info)
+     * Category (Risk, Sales, Product, Marketing, etc.)
+     * Explanation with supporting data
+     * Actionable recommendation
+
+H) REPORTS
+   - Click "Reports" to generate business reports
+   - Reports include all dashboard data
+   - Export to:
+     * CSV (plain text spreadsheet)
+     * Excel (multi-sheet, formatted workbook)
+     * HTML (printable report)
+   - Filter reports by date, region, and category
+
+I) USER MANAGEMENT
+   - Register new accounts from the login page
+   - All passwords are securely hashed
+   - Session-based authentication
+   - Logout to clear your session
+
+
+================================================================
+5. SUPPORTED FILE FORMATS
+================================================================
+
+  CSV files:
+    - Comma-separated values (.csv)
+    - Must have column headers in the first row
+
+  Excel files:
+    - Microsoft Excel (.xlsx)
+    - Legacy Excel (.xls)
+
+  Maximum file size: 50 MB
+
+  Recommended columns for sales data:
+    Date, Product, Category, Quantity, Unit Price,
+    Revenue, Cost, Region, Customer
+
+
+================================================================
+6. TROUBLESHOOTING
+================================================================
+
+PROBLEM: "Python is not recognized as an internal or external command"
+SOLUTION: Reinstall Python and make sure to check
+  "Add Python to PATH" during installation.
+  Then restart your computer.
+
+PROBLEM: "Port 5000 already in use"
+SOLUTION: Close other applications using port 5000,
+  or change the port number in app.py (PORT = 5000).
+
+PROBLEM: "ModuleNotFoundError: No module named 'flask'"
+SOLUTION: Make sure you activated the virtual environment:
+  Windows: venv\Scripts\activate
+  Mac/Linux: source venv/bin/activate
+  Then run: pip install -r requirements.txt
+
+PROBLEM: File upload fails
+SOLUTION: Check the file is under 50 MB and is CSV/XLSX format.
+
+PROBLEM: Charts not loading
+SOLUTION: Check your internet connection for the first load
+  (Plotly.js CDN). After that, it works offline.
+
+PROBLEM: Application is slow with large files
+SOLUTION: Large files (10,000+ rows) may take time.
+  Try smaller datasets first to verify the workflow.
+
+PROBLEM: "Database is locked"
+SOLUTION: Make sure only one instance of the application
+  is running. Close any other Flask windows.
+
+
+================================================================
+7. PROJECT MODULES EXPLAINED
+================================================================
+
+  app.py              - Main application with all routes
+  database.py         - SQLite database setup and table creation
+  models.py           - Data models and database query methods
+  data_processor.py   - Handles CSV/Excel upload processing
+  ml_models.py        - Machine learning model training (LR, RF)
+  anomaly_detection.py - Detects unusual data patterns (Isolation Forest)
+  forecasting.py      - Predicts future values (ARIMA, Holt-Winters)
+  recommendations.py  - Generates business recommendations from rules
+  reporting.py        - Creates reports in CSV/Excel/HTML
+  seed_data.py        - Generates sample business data on first run
+
+  data/database/      - SQLite database files (auto-created)
+  data/uploads/       - Your uploaded files
+  models/             - Saved trained ML models (.joblib)
+  static/css/         - Application styles
+  static/js/          - Dashboard and chart JavaScript code
+  templates/          - HTML page templates
+
+
+================================================================
+  Thank you for using the AI Business Intelligence Dashboard!
+  This project was built as a Final Year Academic Project.
+================================================================
